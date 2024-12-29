@@ -4,7 +4,8 @@
 This markdown refers to 
 - [**Chapter 9-1: Background-1**](https://www.youtube.com/watch?v=r6LkcFY093M&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=57)
 - [**Chapter 9-1:  Background-2**](https://www.youtube.com/watch?v=e4mKfEFLHGc&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=58)
-
+- [**Chapter 9-2: Contiguous Memory Allocation-1**](https://www.youtube.com/watch?v=e62l0H4DF6k&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=59)
+- [**Chapter 9-2: Contiguous Memory Allocation-2**](https://www.youtube.com/watch?v=SkiBd48_80o&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=60)
 ---
 
 ### Memory Protection
@@ -72,3 +73,37 @@ This markdown refers to
     <img src="images/image-3.png" alt="Memory Protection Diagram" style="max-width: 50%;border-radius: 10px"/>
 </div>
 
+## Contiguous Memory Allocation
+* 最直覺的分配方式
+- Memory Protection for **relocation and limit register**
+  - hardware support
+  - limit register: range of addresses
+  - relocation register: **最小的 address**
+  - MMU: **Logical address -> if < limit register then + relocation register -> physical address**
+  - <mark><strong>OS 決定 Relocation 跟 Limit Registers 且 context switch 時會存他們，「save跟restore都會存取跟提取」</strong></mark>
+<div align="center" style='display: flex; justify-content: center; align-items: center;'>
+    <img src="images/image-4.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px">
+</div>
+
+- **Memory Allocation**
+  - Used partition 
+  - Free partition
+  - Hole: partition 被釋放
+  - <mark>OS紀錄哪些使用到哪些沒使用</mark>
+  - Merge: OS merge 隔壁的洞
+  <div align="center" style='display: flex; justify-content: center; align-items: center;'>
+      <img src="images/image-5.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px">
+  </div>
+  
+  - External Fragmentation: process 離開的時候釋放掉的空間 -> 用哪個洞執行程式
+    - First fit: 第一個夠大的
+    - Best fit: 全部找完，最小的洞 
+    - Worst fit: 全部找完，最大的洞
+    <mark>First fit 跟 Best Fit 最好，<strong>First fit最快</strong></mark>
+
+    - **50-percent rule**: 
+      - N 個分配blocks 中 .5 N 會因Fragmentation 而無用 -> 1/3 memory 無法使用
+      - **Sol 1. Compaction**: shuffle memory contents: 往上搬動來整理記憶體 -> 很耗時間
+      - **Sol 2. Non-contiguous Memory Allocation**
+    - **Non-contiguous**
+      - **Internal Fragmentation**(memory internal to a partition): 因memory拆成特定大小的 Blocks **分配的 Block 會大於實際要求的空間**
