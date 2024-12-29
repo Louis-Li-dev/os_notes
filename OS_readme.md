@@ -67,7 +67,7 @@ This markdown refers to
   - 載入一次就好了，第二次即可共享
 
 - **Static Linking v.s. Dynamic Linking**
-<div align="center" style='display: flex'>
+<div align="center" style='display: flex; justify-content: center; align-items: center;'>
     <img src="images/image-2.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px">
     <img src="images/image-3.png" alt="Memory Protection Diagram" style="max-width: 50%;border-radius: 10px"/>
 </div>
