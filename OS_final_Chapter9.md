@@ -91,17 +91,17 @@ This markdown refers to
   - MMU: **Logical address -> if < limit register then + relocation register -> physical address**
   - <mark><strong>OS 決定 Relocation 跟 Limit Registers 且 context switch 時會存他們，「save跟restore都會存取跟提取」</strong></mark>
 <div align="center" style='display: flex; justify-content: center; align-items: center;'>
-    <img src="images/image-4.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px">
+    <img src="images/image-5.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px">
 </div>
 
 - **Memory Allocation**
   - Used partition 
   - Free partition
-  - Hole: partition 被釋放
+  - Hole: used partition 被釋放
   - <mark>OS紀錄哪些使用到哪些沒使用</mark>
   - Merge: OS merge 隔壁的洞
-  <div align="center" style='display: flex; justify-content: center; align-items: center;'>
-      <img src="images/image-5.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px">
+  <div align="center" style='padding: 10px; display: flex; justify-content: center; align-items: center;'>
+      <img src="images/image-4.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px">
   </div>
   
   - External Fragmentation: process 離開的時候釋放掉的空間 -> 用哪個洞執行程式
@@ -115,7 +115,7 @@ This markdown refers to
       - **Sol 1. Compaction**: shuffle memory contents: 往上搬動來整理記憶體 -> 很耗時間
       - **Sol 2. Non-contiguous Memory Allocation**
     - **Non-contiguous**
-      - **Internal Fragmentation**(memory internal to a partition): 因memory拆成特定大小的 Blocks **分配的 Block 會大於實際要求的空間**
+      - **Internal Fragmentation**(memory internal to a partition): 因 memory 拆成特定大小的 Blocks **分配的 Block 會大於實際要求的空間**
 
 ## Paging
 * 需 OS & hardware 的緊密合作
