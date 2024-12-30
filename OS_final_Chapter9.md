@@ -222,23 +222,27 @@ This markdown refers to
 ## Strcuture of the Page Table
 * 過大的 Page Table
 * E.g.
+
   ```math
     \text{32-bit logical address space, 4 bytes for each entry, and 4KB Page size} \newline
     \text{Page Table Size} = \frac{2^{32}}{2^{12}} \times 2^{2}\, \text{bytes} = 4 \text{MB} \text{ (the same size as 1024 frames) -> Contiguous Memory Allocation Issue}
   ```
+  
 - **Hierarchical Page Table**
   - **Two-level page table** (a.k.a. Forward-mapped page table)
     - Outer page table
     - Page table (non-contiguous)
     - memory (non-contiguous)
     - e.g.
+
       ```math
         \text{32-bit machine with 4K page size} \newline
         \text{Page Numbers: 20 bits} \newline
-        \text{Page Offset: 12 bits} \newline
+        \text{Page Offset: 12 bits} \newline 
         \text{Page Number Bits} = P_1\text{'s 10 bits} + P_2\text{'s 10 bits} \newline
         P_2 \text{ has } 2^{10} \text{ entries}
       ```
+
     <div align="center" style='display: flex; justify-content: center; align-items: center;'>
       <img src="images/image-8.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
     </div>
