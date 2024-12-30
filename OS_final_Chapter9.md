@@ -214,7 +214,7 @@ This markdown refers to
     - Heavily used programs: compiler, window systems, database systems
     - Shared Libraries
     - IPC shared memory
-  - How? A: 讓 Page Table 的 entry **「一樣」** 就好😊
+  - **How ?** A: 讓 Page Table 的 entry **「一樣」** 就好😊
   <div align="center" style='display: flex; justify-content: center; align-items: center;'>
           <img src="images/image-7.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
   </div>
@@ -227,12 +227,13 @@ This markdown refers to
     \text{32-bit logical address space, 4 bytes for each entry, and 4KB Page size} \newline
     \text{Page Table Size} = \frac{2^{32}}{2^{12}} \times 2^{2}\, \text{bytes} = 4 \text{MB} \text{ (the same size as 1024 frames) -> Contiguous Memory Allocation Issue}
   ```
-  
+
 - **Hierarchical Page Table**
   - **Two-level page table** (a.k.a. Forward-mapped page table)
-    - Outer page table
-    - Page table (non-contiguous)
-    - memory (non-contiguous)
+    - 利用將 **contiguous 的區段分散至 inner space 來解決「超大 contiguous space」 問題**
+    - Outer page table: <mark>Contiguous</mark>
+    - Page table <mark>(non-contiguous)</mark>
+    - memory <mark>(non-contiguous)</mark>
     - e.g.
 
       ```math
