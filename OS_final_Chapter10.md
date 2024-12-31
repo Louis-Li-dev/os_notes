@@ -18,6 +18,11 @@
 - [**Chapter 10-9: Allocating Kernel Memory-1**](https://www.youtube.com/watch?v=8g0MQIbYQuo&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=86)
 - [**Chapter 10-9: Allocating Kernel Memory-2**](https://www.youtube.com/watch?v=3ehU4qjjkg0&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=87)
 - [**Chapter 10-9: Allocating Kernel Memory-3**](https://www.youtube.com/watch?v=1rwJ2xVpRrc&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=88)
+
+- [**Chapter 10-10: Other Considerations-1**](https://www.youtube.com/watch?v=XOKJTZ1r5yw&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=89)
+
+- [**Chapter 10-10: Other Considerations-2**](https://www.youtube.com/watch?v=3RX_9KZEAt0&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=90)
+- [**Chapter 10-10: Other Consideration-3**](https://www.youtube.com/watch?v=TfVzz661pMg&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=91)
 ## Virtual Memory Background
 
 - 不該把整個程式碼傳入記憶體
@@ -322,3 +327,51 @@
 - Fast memory request satisfation 
     - object已經事先 create
     - 用完就弄成 free 但還在 cache 裡面
+
+## Other Considerations
+### Pre-paging
+- 一開始的時候 (start-up) 都會產生**大量的 Page Fault**
+- Pre-page 預先 page 一個 process 需要的
+- 假設沒用到那 I/O 跟記憶體都**浪費掉**
+- Prepage 執行擋比較難，因為執行的時候會**跳來跳去**讓預測不容易
+- Prepage Data File 容易，他們循序存取，比較可預測
+
+### Page Size
+- Page Table Size (memory overhead) → **希望 Page Table 小，也是 Page 大一點來減少 Entry 數量**
+- Internal Fragmentation (memory utilization) → **小 Page** 🤔
+- I/O overhead → 大 Page
+- Better Resolution (Locality) → small page
+    - 假設 Locality 100 KB 但 Page Size 200 KB，那沒辦法抓住 Locality，因此希望小
+- Number of Page Faults → 大 Page，這樣 Page Fault 少 😱
+
+- **趨勢**
+    - ***Ans: 大***
+        - 希望不要存取**硬碟**
+        - 重視 I/O overhead 跟 number of page faults (page fault 太昂貴)
+
+### TLB Reach
+- TLB 可以 access 的 memory
+    - TLB Reach = (TLB Entries) $\times$ (Page Size)
+    - 希望 working set 的 processes 都在 TLB 這樣就不會 **TLB miss**
+- **增加 TLB Reach**
+    - 增加 TLB entries (貴且耗電)
+    - 增加 Page Size (目前) → Internal Fregmentation
+    - *提供不同 Page Sizes*
+
+### Program Structure
+- 改善 Locality: 程式一次經過太多 Pages，記憶體不能記住太多
+
+    <div align="center" style='display: flex; justify-content: center; align-items: center;'>
+        <img src="images/image-20.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
+    </div>
+
+- Data Structures:
+    Pointers, Hash: Poor Locality (很遠)
+    Stack: Good Locality
+- I/O Interlock & Page Lock
+    - Sol-1
+        - 封包送到已經 Paged out 的
+        - 規定 I/O 資料 OS 代收，OS 知道 P1 被剔除，因此 OS 不會亂送
+        - 缺點: 多一次記憶體 copy (目前還都這麼做)
+    - Sol-2
+        - Page 設定 lock bit 讓他不會踢出去
