@@ -11,6 +11,9 @@
 - [**Chapter 10-4: Page Replacement-3**](https://www.youtube.com/watch?v=PC2_Bgzl21g&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=78)
 - [**Chapter 10-4: Page Replacement-4**](https://www.youtube.com/watch?v=YI211rgshfo&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=79)
 - [**Chapter 10-5: Page Replacement-5**](https://www.youtube.com/watch?v=TVpBx63trhI&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=80)
+- [**Chapter 10-6: Allocation of Frames**](https://www.youtube.com/watch?v=2n8Cm6K3PJo&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=81)
+- [**Chapter 10-7: Thrashing-1**](https://www.youtube.com/watch?v=7ANOznENOk0&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=82)
+- [**Chapter 10-7: Thrashing-2**](https://www.youtube.com/watch?v=MH9AWdd3iTY&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=83)
 ## Virtual Memory Background
 
 - 不該把整個程式碼傳入記憶體
@@ -136,18 +139,18 @@
 - 更新 clock field 或者 更新 stack 每次 memory reference
 - 導致我們需要逼近 LRU 
 
-### Stack Algorithm
+## Stack Algorithm
 - 假設 Physical Memory 有 n frames，變成 n + 1 之後， n frames 仍保留
 
 - Optimal 跟 LRU 都是 Stack Algorithm
 
-- <strong><mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>因為 First in first out 導致 Belady Anomaly 音如果 n + 1 還保留 n 的所有 frame，其不會隨著 frame 數量提升導致 page faults 數量增加</mark></string>
+- <strong><mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>因為 First in first out 導致 Belady Anomaly 音如果 n + 1 還保留 n 的所有 frame，其不會隨著 frame 數量提升導致 page faults 數量增加</mark></strong>
 
-- <strong><mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>Optimal 跟 LRU n 到 n + 1 時還是會保留 n 的所有內容</mark></string>
+- <strong><mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>Optimal 跟 LRU n 到 n + 1 時還是會保留 n 的所有內容</mark></strong>
 
-### LRU-approximation
+## LRU-approximation
 - 因 LRU 需要 hardware support 且很少系統有提供足夠的 support
-#### Additional-Reference-Bits-Algorithm
+### Additional-Reference-Bits-Algorithm
 - ***Ans: Reference Bit***
     - 一開始設為 0
     - 每次存取就設置成 1\
@@ -161,12 +164,12 @@
         - 每次 **shift right** 並補在最高位元，**最低位元踢出去**
         - 8 bits 代表 8 秒內有哪些 page 被存取
         - 找數字最小的 (存取最少的)
-#### Second-Chance Algorithm (Clock Algorithm)
+### Second-Chance Algorithm (Clock Algorithm)
 - FIFO + reference bit
 - FIFO
     - reference bit 為 1 → 給第二次機會，但 reference bit 改成 0 → 往下找
     - reference bit 為 0 踢掉
-#### Enhanced Second Chance Algorithm
+### Enhanced Second Chance Algorithm
 <mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>read 會設定 reference bit 1; write 會設定 reference bit 跟 modify bit 為 1;</mark>
 - (reference bit, modify bit):
     - (0, 0): 不用寫硬碟可以踢(最佳)
@@ -174,14 +177,14 @@
     - (1, 0): replacement overhead 低，<mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>read 的狀況</mark>
     - (1, 1): 剔除還要寫硬碟(最差)，<mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>write 的狀況</mark>
 
-### Counting Algorithm
+## Counting Algorithm
 - **count number of references**
 - LFU (least frequently used): 最少使用到的剔除
 
 - counting based 很少用\
 <strong><mark>a 之前被存取 100 次 之後再也沒用到的話就不適合</mark></strong>
 
-### Page Buffering Algorithms
+## Page Buffering Algorithms
 - **Original Page Replacement**: 記憶體都滿了，選個 victim 踢掉:
     - 寫一次硬碟(存取硬碟)
     - 改 Valid-invalid bit
@@ -195,3 +198,65 @@
         <div align="center" style='display: flex; justify-content: center; align-items: center; padding: 10px;'>
             <img src="images/image-14.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
         </div>
+    
+## Allocation of Frames
+- Global Replacement
+    - 在所有 frames 裡面選一個替換
+    - **Bad**:  沒辦法控制 fault rate → 會被其他 processes 影響
+- Local Replacement
+    - 只能在自己的 frames 裡面選一個替換
+    - **Bad**: 有些 frames 在其他 processes 的很少被使用到卻**不能被替換** (犧牲 paging的優點之一)
+<strong><mark> Global Replacement: 更常見 → better throughput</mark></strong>\
+ ( •̀ ω •́ )✧
+
+- **Global Page-Replacement Policy**
+    - free frame list 低於 minimum threshold 時，**Kernel Routine "*Reapers*" 回收 Pages**
+        - 其把 Page 踢掉來讓出 Page 空間
+    - free frame list 大於 maximum threshold 時就不在執行 **Reaper**
+    - 確保有至少 minimum threshold 的 memory 去滿足新的 request
+    <div align="center" style='display: flex; justify-content: center; align-items: center; padding: 10px;'>
+        <img src="images/image-15.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
+    </div>
+    
+
+## Thrashing
+- **Process 太少記憶體空間 → Page Fault Rate 太高**
+    - Low CPU utilization → OS 誤判
+        - Increased Degree of Multiprogramming
+        - More processes added to the system
+        <mark>低利用率讓 OS 覺得要執行更多 Process → 問題更嚴重</mark>
+        <div align="center" style='display: flex; justify-content: center; align-items: center; padding: 10px;'>
+            <img src="images/image-16.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
+        </div>
+        
+    - <strong><mark>定義: 若 process 花太多時間在 paging (page in page out) 多於「執行」</mark></strong>
+
+
+### Reference of Locality
+
+- **Locality**: a set of pages that are actively used
+- 當 Process 執行時不同時間點上有**不同 locality**
+- 足夠的 frame 去包含 localities 就不會有 thrashing
+
+### Working-Set Model
+- working-set window: $\Delta$ (delta) 
+- working set: a set of pages in most recent $\Delta$ page references
+
+ <div align="center" style='display: flex; justify-content: center; align-items: center; padding: 10px;'>
+            <img src="images/image-17.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
+</div>
+
+- 計算
+    - $\Sigma \,\,\text{WSS}_i \equiv \text{total working sets for all processes}$
+    - $\text{m} = \text{total frames in memory}$
+    - $D \ll m, \text{increase the number of multiprogramming}$
+    - $\text{if } D > m$ → thrashing
+- <strong><mark>追蹤 WSS at each memory reference 不簡單 → 逼近 </mark></strong>
+    - OS 不知道 CPU 存取記憶體
+### Approximate Working Set
+- **Interval timer + Reference bit**
+  - 知道哪段時間有哪些被存取 (two in-memory bits copied from reference bit) 也可以更多 bits
+- 困難點: 決定 delta
+    - $\Delta$ 太少，很難包含整個 Locality
+    - $\Delta$ 太多，給太多空間給 Locality，包含太多
+    
