@@ -14,6 +14,10 @@
 - [**Chapter 10-6: Allocation of Frames**](https://www.youtube.com/watch?v=2n8Cm6K3PJo&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=81)
 - [**Chapter 10-7: Thrashing-1**](https://www.youtube.com/watch?v=7ANOznENOk0&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=82)
 - [**Chapter 10-7: Thrashing-2**](https://www.youtube.com/watch?v=MH9AWdd3iTY&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=83)
+- [**Chapter 10-8: Memory Compression**](https://www.youtube.com/watch?v=vChAS5UjcW4&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=86)
+- [**Chapter 10-9: Allocating Kernel Memory-1**](https://www.youtube.com/watch?v=8g0MQIbYQuo&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=86)
+- [**Chapter 10-9: Allocating Kernel Memory-2**](https://www.youtube.com/watch?v=3ehU4qjjkg0&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=87)
+- [**Chapter 10-9: Allocating Kernel Memory-3**](https://www.youtube.com/watch?v=1rwJ2xVpRrc&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=88)
 ## Virtual Memory Background
 
 - 不該把整個程式碼傳入記憶體
@@ -217,6 +221,7 @@
     <div align="center" style='display: flex; justify-content: center; align-items: center; padding: 10px;'>
         <img src="images/image-15.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
     </div>
+    <strong><mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>之所以要保留 minimum 的 free frames 是因為我有空的可以直接 Page in，剔除的可以平行執行不需要 sequentially 的 Page out</mark></strong>
     
 
 ## Thrashing
@@ -259,4 +264,61 @@
 - 困難點: 決定 delta
     - $\Delta$ 太少，很難包含整個 Locality
     - $\Delta$ 太多，給太多空間給 Locality，包含太多
-    
+
+### Page-Fault Frequency
+
+- Thrashing 有很高 Page Fault Rate 
+- Page Fault Rate 高 → 給多點記憶體空間
+- Page Fault Rate 低 → 拿回記憶體空間
+ <div align="center" style='display: flex; justify-content: center; align-items: center; padding: 10px;'>
+            <img src="images/image-18.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
+</div>
+ 
+## Memory Compression
+- Paging Version
+    - Free Frame list
+    - Modified Frame List
+    - <mark>太少 free frame 我就把 modified frame list寫回記憶體來清空間</mark>
+- Memory Compression Version
+    - Compressed Frame List: 從 free frame list 裡面**拿一個 free frame 去把 modified frame list 的資料壓縮存放** → 以此釋放更多空間
+
+## Allocating Kernel Memory
+- 使用者要求
+    - malloc(): 從 free frame list 裡面去分配 
+    - 現象:
+        - 不連續
+        - internal fragmentation 
+- Kernel 要求
+    - **Another-Free-Memory Pool** 分配:
+        - Kernel 使用 Data Strcuture 才要空間\
+            E.g. 很需要動態產生 PCB TCB 封包 等
+            - Kernel code 跟 data **不能 Paged out 因為常常被使用，處理 Page in/out的程式碼需被保留否則就沒辦法做指令了**, internal fragmentation 浪費記憶體
+        - 有些 kernel memory 需要 physically contiguous，因有些硬體需要連續記憶體跟OS互動\
+        e.g. 硬碟如果用 Physical Address 直接存取就不能用 Paging 代表空間一定要連續
+## Buddy System
+- 分配用 $2^n$ (power-of-2 allocator)
+- 小的分配需要時我就把 chunck 切成兩個 next-lower power of 2
+- Coalescing 空白 Merge
+
+ <div align="center" style='display: flex; justify-content: center; align-items: center; padding: 10px;'>
+            <img src="images/image-19.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
+</div>
+
+## Slab Allocation
+- Slab
+    - 一個或更多 contiguous 的 frames
+    - 指定給特定 cache
+
+- Cache
+    - 包含一個或更多 caches
+    - 每個 cache 都用來做特別的 data structure\
+    $\text{1 slabs} = 3\text{  frames}\newline
+    \text{2 slabs} = 6 \text{ frames}\newline
+    \text{a cache} = 2 \text{ slab} = 24\text{ KB}\newline
+    \text{PCB}  = 2 \text{ KB}\newline
+    \text{a cache can stores 12 PCB}$
+### 優點
+- No fragmentation
+- Fast memory request satisfation 
+    - object已經事先 create
+    - 用完就弄成 free 但還在 cache 裡面
