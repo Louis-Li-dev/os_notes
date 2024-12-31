@@ -137,11 +137,12 @@ This markdown refers to
   - **Page Number(p)**: 查詢 Page Table {Page: Frame}
   - **Offset(d)**: 查詢 frame 裡面的 offset
   - CPU 產生的 address 切成 Page number 跟 Offset:
-    ```math
+    
+    $
     \text{Logical address} = m\, \text{bits} \newline
     \text{Page number} =  m - n \,\text{bits}\newline
     \text{Offset} = n \, \text{bits}
-    ```
+    $
 - **誰 maintain Page Table**
   - **OS 產生 Page Table**
   - **MMU (the address translation hardware) 使用 Page Table** 做 Address 轉換
@@ -181,11 +182,11 @@ This markdown refers to
         - TLB hit: access time = 10 ns
       - 若 hit ratio = 80%
         - Effective Accesss Time(EAT)
-          ```math 
+          $
             \text{EAT} = 0.8 \times 10 \, + \, 0.2 \times 20 = 12 \, \text{ns}
             \newline
             \text{if } EAT = 100\%, \text{ then it experiences a 20\% slowdown in memory access time.}
-            ```
+          $
         - 真實 Hit ratio 為 99% -> 1% slowndown
 
 
@@ -195,13 +196,13 @@ This markdown refers to
       - **Valid**: 合法，可以存取 frame
       - **Invalid**: 不合法，不屬於他的記憶體空間拒絕，跳到 OS 產生 trap
       - Example: 
-      ```math
+      $
       \text{14-bit logical address, and the page size is 2KB}\newline
       \text{page size} = 2^{10} \times 2 = 2^{11} \newline
       \text{number of entries} = \frac{2^{14}}{2^{11}} = 2^3 = 8\newline
       \text{if the program only takes 6 pages, there are 2 pages marked as invalid.}\newline
       \text{Any access to it causes a trap}
-      ```
+      $
     - **很多 invalid 資料** :
       - Page-table length register (PTLR): **只要記錄 valid 的部分就好，超過就丟 trap**
     - **Fine-grained protection**
@@ -223,10 +224,10 @@ This markdown refers to
 * 過大的 Page Table
 * E.g.
 
-  ```math
+  $
     \text{32-bit logical address space, 4 bytes for each entry, and 4KB Page size} \newline
     \text{Page Table Size} = \frac{2^{32}}{2^{12}} \times 2^{2}\, \text{bytes} = 4 \text{MB} \text{ (the same size as 1024 frames) -> Contiguous Memory Allocation Issue}
-  ```
+  $
 
 - **Hierarchical Page Table**
   - **Two-level page table** (a.k.a. Forward-mapped page table)
@@ -236,13 +237,13 @@ This markdown refers to
     - memory <mark>(non-contiguous)</mark>
     - e.g.
 
-      ```math
+      $
         \text{32-bit machine with 4K page size} \newline
         \text{Page Numbers: 20 bits} \newline
         \text{Page Offset: 12 bits} \newline 
         \text{Page Number Bits} = P_1\text{'s 10 bits} + P_2\text{'s 10 bits} \newline
         P_2 \text{ has } 2^{10} \text{ entries}
-      ```
+      $
 
     <div align="center" style='display: flex; justify-content: center; align-items: center;'>
       <img src="images/image-8.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>

@@ -10,6 +10,7 @@
 - [**Chapter 10-4: Page Replacement-2**](https://www.youtube.com/watch?v=cH7iY5QTI9U&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=77)
 - [**Chapter 10-4: Page Replacement-3**](https://www.youtube.com/watch?v=PC2_Bgzl21g&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=78)
 - [**Chapter 10-4: Page Replacement-4**](https://www.youtube.com/watch?v=YI211rgshfo&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=79)
+- [**Chapter 10-5: Page Replacement-5**](https://www.youtube.com/watch?v=TVpBx63trhI&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=80)
 ## Virtual Memory Background
 
 - 不該把整個程式碼傳入記憶體
@@ -140,6 +141,10 @@
 
 - Optimal 跟 LRU 都是 Stack Algorithm
 
+- <strong><mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>因為 First in first out 導致 Belady Anomaly 音如果 n + 1 還保留 n 的所有 frame，其不會隨著 frame 數量提升導致 page faults 數量增加</mark></string>
+
+- <strong><mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>Optimal 跟 LRU n 到 n + 1 時還是會保留 n 的所有內容</mark></string>
+
 ### LRU-approximation
 - 因 LRU 需要 hardware support 且很少系統有提供足夠的 support
 #### Additional-Reference-Bits-Algorithm
@@ -162,11 +167,12 @@
     - reference bit 為 1 → 給第二次機會，但 reference bit 改成 0 → 往下找
     - reference bit 為 0 踢掉
 #### Enhanced Second Chance Algorithm
+<mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>read 會設定 reference bit 1; write 會設定 reference bit 跟 modify bit 為 1;</mark>
 - (reference bit, modify bit):
     - (0, 0): 不用寫硬碟可以踢(最佳)
-    - (0, 1)
-    - (1, 0): replacement overhead 低
-    - (1, 1): 剔除還要寫硬碟(最差)
+    - (0, 1): <mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>已經錯過 first chance 的 (1, 1)</mark>
+    - (1, 0): replacement overhead 低，<mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>read 的狀況</mark>
+    - (1, 1): 剔除還要寫硬碟(最差)，<mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>write 的狀況</mark>
 
 ### Counting Algorithm
 - **count number of references**
@@ -174,3 +180,18 @@
 
 - counting based 很少用\
 <strong><mark>a 之前被存取 100 次 之後再也沒用到的話就不適合</mark></strong>
+
+### Page Buffering Algorithms
+- **Original Page Replacement**: 記憶體都滿了，選個 victim 踢掉:
+    - 寫一次硬碟(存取硬碟)
+    - 改 Valid-invalid bit
+    - Page in(存取硬碟)
+    - 改 Page Table \
+    → <mark>很長等待在 waiting</mark>
+- **維護 Free Frame**: 
+    - **A pool of free frames**: free memory 小於 threshold 的時候就會做 page  replacement (不會等到都沒有才觸發)
+    - Dirty Pages 先寫回去硬碟，Page Fault 就可以蓋過去
+    - <strong><mark style='background-color:red; color: white; padding-left: 2px; padding-right: 3px'>記得原本的 free frame 存哪些 Page，這樣我下次存取就可以重複使用</mark></strong>
+        <div align="center" style='display: flex; justify-content: center; align-items: center; padding: 10px;'>
+            <img src="images/image-14.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
+        </div>
