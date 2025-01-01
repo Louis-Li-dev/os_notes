@@ -269,15 +269,17 @@ initialized to false
 ### Semaphores
 - $S$ : *integer variable*
 - 只能用 wait 跟 signal 來存取
-    - **wait**\
-    $\text{wait (S) : \{}\\
-    \qquad\text{while S} \leq 0\,;\\
-    \qquad S \text{ - - };\\
-    \}$
-    - **signal**\
-    $\text{signal (S) : \{}\\
-    \qquad\ S \text{ + + };\\
-    \}$
+    - **wait**
+        
+        $\text{wait (S) : \{}\\
+        \qquad\text{while S} \leq 0\,;\\
+        \qquad S \text{ - - };\\
+        \}$
+    - **signal**
+    
+        $\text{signal (S) : \{}\\
+        \qquad\ S \text{ + + };\\
+        \}$
 
 - 沒有兩個 processes 能夠在**同個 semaphore 上同時執行** signal() 跟 wait()
 ---
