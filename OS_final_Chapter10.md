@@ -168,7 +168,7 @@
 - **Additional Reference Bits**
     - Idea
         - Additional Ordering info
-        - history bits in a tablein memory
+        - history bits in a table in memory
     - 流程
         - 每次 **shift right** 並補在最高位元，**最低位元踢出去**
         - 8 bits 代表 8 秒內有哪些 page 被存取
@@ -257,7 +257,7 @@
 </div>
 
 - 計算
-    - $\Sigma \,\,\text{WSS}_i \equiv \text{total working sets for all processes}$
+    - $D = \Sigma \,\,\text{WSS}_i \equiv \text{total working sets for all processes}$
     - $\text{m} = \text{total frames in memory}$
     - $D \ll m, \text{increase the number of multiprogramming}$
     - $\text{if } D > m$ → thrashing
