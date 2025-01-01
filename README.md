@@ -26,10 +26,10 @@ This repository contains my notes and summaries from **Operating System** lectur
 - **Head to this link directed to the Chrome Extension**
    - [Extension](https://chromewebstore.google.com/detail/markdown-reader/medapdbncneneejhbgcjceippjlfkmkg?hl=zh-TW&utm_source=ext_sidebar)
    - Allow access to file URLs
-     <img src="https://github.com/user-attachments/assets/a2ce0d0b-12c3-47ef-abbc-9b8236ac0311" style='border-radius:20px'/>
+     <img src="https://github.com/user-attachments/assets/a2ce0d0b-12c3-47ef-abbc-9b8236ac0311"/>
    - Open the markdown files using Chrome
    - result
-     <img src="[https://github.com/user-attachments/assets/a2ce0d0b-12c3-47ef-abbc-9b8236ac0311](https://github.com/user-attachments/assets/d2402021-c124-42d8-94f6-91f5f7e98fc5)" style='border-radius:20px'/>
+     <img src="https://github.com/user-attachments/assets/d2402021-c124-42d8-94f6-91f5f7e98fc5"/>
      
 
 
