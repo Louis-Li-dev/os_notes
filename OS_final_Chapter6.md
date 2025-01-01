@@ -271,19 +271,15 @@ initialized to false
 - 只能用 wait 跟 signal 來存取
     - **wait**
         
-        -   $
-                \text{wait (S) : \{}\\
-                \qquad\text{while S} \leq 0\,;\\
-                \qquad S \text{ - - };\\
-                \}
-            $
+        -   $\mathrm{wait\,(S)\,:\,\{}\\
+                \qquad\mathrm{while\,S} \leq 0\,;\\
+                \qquad S \mathrm{ - - };\\
+                \}$
 
     - **signal**
-        -    $
-                \text{signal (S) : \{}\\
-                \qquad\ S \text{ + + };\\
-                \}
-            $
+        -    $\mathrm{signal\,(S)\,:\,\{}\\
+                \qquad\ S \mathrm{ + + };\\
+                \}$
 
 - 沒有兩個 processes 能夠在**同個 semaphore 上同時執行** signal() 跟 wait()
 ---
@@ -299,11 +295,11 @@ initialized to false
 - **Def**:
 
     ---
-    $\text{Let } P_1 \text{ addresses } S_1 \\ \text{and } P_2 \text{ addresses } S_2 \\$
-    $\text{synch}: 0\\$ 
+    $\mathrm{Let\,} \, P_1 \mathrm{\,addresses\,} S_1 \\ \mathrm{and\,} P_2 \mathrm{\,addresses\,} S_2 \\$
+    $\mathrm{synch}: 0\\$ 
     $S_1$ 先 $S_2$ 後，那
 
-    $P_1:\\ \quad S_1;\\\quad \text{signal(synch);}\\ P_2:\\ \quad \text{wait(synch);}\\ \quad S_2;$
+    $P_1:\\ \quad S_1;\\\quad \mathrm{signal(synch);}\\ P_2:\\ \quad \mathrm{wait(synch);}\\ \quad S_2;$
 
     ---
 - 能夠確保 $S_1$ 先跑，因如果 $S_2$ 先跑就會 **waiting**
@@ -318,22 +314,18 @@ initialized to false
         } semaphore;
     ```
 - **定義 functions**\
-    $
-        \text{wait(S) : } \\
-        \qquad \text{S.value - - ;} \\
-        \qquad \text{if (S.value < 0)}\{\\
-            \qquad\qquad \text{add this process to S.L ;}\\
-            \qquad\qquad \text{block ; }\\
-        \qquad\}
-    $\
-    $
-        \text{signal(S) : }\\
-        \qquad\text{S.value++}\\
-        \qquad\text{if} (\text{S.value} \leq 0)\{\\
-        \qquad\qquad \text{remove a process P from S.L ; }\\
-        \qquad\qquad \text{wakeup(P) ; }\\
-        \qquad\}
-    $
+    $\mathrm{wait(S) : } \\
+    \qquad \mathrm{S.value - - ;} \\
+    \qquad \mathrm{if (S.value < 0)}\{\\
+        \qquad\qquad \mathrm{add\,this\,process\,to\,S.L\, ;}\\
+        \qquad\qquad \mathrm{block ; }\\
+    \qquad\}$\
+    $\mathrm{signal(S) : }\\
+    \qquad\mathrm{S.value++}\\
+    \qquad\mathrm{if} (\mathrm{S.value} \leq 0)\{\\
+    \qquad\qquad \mathrm{remove\, a\, process\, P\, from\, S.L\,; }\\
+    \qquad\qquad \mathrm{wakeup(P) ; }\\
+    \qquad\}$
     - 確保不會有 <strong><mark>兩個 processes 在同個 semaphore 上面同時執行 wait() 跟 signal()</mark></strong> $\rightarrow$ 因為 semaphore 本身也是 **共享變數**，因此需要利用 
         - Uniprocessor: ***disable interrupts***
         - Multicore system: ***compare_and_swap or test_and_set***
