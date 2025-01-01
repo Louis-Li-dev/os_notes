@@ -22,7 +22,7 @@
 - [**Chapter 10-10: Other Considerations-1**](https://www.youtube.com/watch?v=XOKJTZ1r5yw&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=89)
 
 - [**Chapter 10-10: Other Considerations-2**](https://www.youtube.com/watch?v=3RX_9KZEAt0&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=90)
-- [**Chapter 10-10: Other Consideration-3**](https://www.youtube.com/watch?v=TfVzz661pMg&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=91)
+- [**Chapter 10-10: Other Considerations-3**](https://www.youtube.com/watch?v=TfVzz661pMg&list=PLwD0kbgjHKhHaUh1mnJIuwm6otLQW3_UP&index=91)
 ## Virtual Memory Background
 
 - 不該把整個程式碼傳入記憶體
