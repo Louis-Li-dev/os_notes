@@ -1,15 +1,11 @@
 
 ---
-
 # 📚 Operating System Lecture Notes
-
 This repository contains my notes and summaries from **Operating System** lectures, based on video lessons and handouts. It's a comprehensive resource for anyone studying or reviewing operating system concepts.
-
 🎥 Special thanks to **Professor [張軒彬](https://www.youtube.com/@%E5%BC%B5%E8%BB%92%E5%BD%AC)** for creating exceptional remote learning content and high-quality educational videos. 🙌
-
 ---
 
-## 📖 How to Use This Repository
+## Use this repo on VSCode
 
 1. **Clone the Repository**:
    ```bash
@@ -25,12 +21,15 @@ This repository contains my notes and summaries from **Operating System** lectur
 
 ---
 
-### 🌟 Acknowledgments
 
-All materials are inspired by and adapted from Professor [張軒彬's](https://www.youtube.com/@%E5%BC%B5%E8%BB%92%E5%BD%AC) outstanding videos. If you find these notes helpful, consider supporting the professor by watching the original content on [YouTube](https://www.youtube.com/@%E5%BC%B5%E8%BB%92%E5%BD%AC).
+## Use browse the markdown files using Chrome Extensions
+- **Head to this link directed to the Chrome Extension**
+   - [Extension](https://chromewebstore.google.com/detail/markdown-reader/medapdbncneneejhbgcjceippjlfkmkg?hl=zh-TW&utm_source=ext_sidebar)
+   - Allow access to file URLs
+     <img src="https://github.com/user-attachments/assets/a2ce0d0b-12c3-47ef-abbc-9b8236ac0311" style='border-radius:20px'/>
+   - Open the markdown files using Chrome
+   - result
+     <img src="[https://github.com/user-attachments/assets/a2ce0d0b-12c3-47ef-abbc-9b8236ac0311](https://github.com/user-attachments/assets/d2402021-c124-42d8-94f6-91f5f7e98fc5)" style='border-radius:20px'/>
+     
 
----
 
-Feel free to share feedback or suggestions! 😊
-
---- 
