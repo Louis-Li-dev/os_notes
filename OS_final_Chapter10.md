@@ -270,6 +270,11 @@
     - $\Delta$ 太少，很難包含整個 Locality
     - $\Delta$ 太多，給太多空間給 Locality，包含太多
 
+<div align="center" style='display: flex; justify-content: center; align-items: center; padding: 10px;'>
+            <img src="images/image-21.png" alt="Memory Protection Diagram" style="max-width: 45%;border-radius: 10px"/>
+</div>
+<center>此時有 P1</center>
+
 ### Page-Fault Frequency
 
 - Thrashing 有很高 Page Fault Rate 
