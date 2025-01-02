@@ -150,14 +150,14 @@ Answer the following:
 ## **12. Memory Accesses & TLB (9 pts)**
 
 **Scenario:**  
-A system with 8-bit addresses and 16-byte pages processes logical addresses with TLB and LRU policies.
+A system with 8-bit addresses and 16-byte pages. A process in this system has 4 logical pages, which are mapped to 3 physical frames in the following manner: logical page 0 maps to physical frame 2, page 1 maps to frame 0, page 2 maps to frame 1, and page 3 is not mapped to any physical frame. The process may not use more than 3 physical frames. On a page fault, the demand paging system uses the LRU policy to evict a page. The MMU has a TLB cache that can store 2 entries. The TLB cahce also uses the LRU policy to store the most recently used mappings in cache. Now, the process accesses the following logical addresses in order: 7, 17, 37, 20, 40, 60.
 
 **Questions:**  
 | Part | Description | Points |
 |------|-------------|--------|
-| (a)  | Which memory accesses result in a TLB miss? | 3 pts |
-| (b)  | Which memory accesses result in a page fault? | 3 pts |
-| (c)  | Which physical address is accessed upon logical address 60? | 3 pts |
+| (a)  | Out of that 6 memory accesses, Which memory accesses result in a TLB miss? Clearly indicate that the accesses that result in a miss. Assume that the TLB cache is empty before the accesses begin.| 3 pts |
+| (b)  | Out of the 6 memory accesses, Which memory accesses result in a page fault? Clearly indicate the result in a page fault. | 3 pts |
+| (c)  | Upon accessing the logical address 60, which physical address is eventually accessed by the system (after serving any page faults that may arise)? Show suitable calculations. | 3 pts |
 
 ---
 
@@ -197,12 +197,12 @@ while (i < 1000) {
 }
 ```
 
-| Variable | Locality Types                         |
-|----------|----------------------------------------|
-| `a`      | Spatial / Temporal / No Locality       |
-| `b`      | Spatial / Temporal / No Locality       |
-| `w`      | Spatial / Temporal / No Locality       |
-| `x`      | Spatial / Temporal / No Locality       |
+| Variable |       Locality Types                 |||
+|-|-|-|-|
+| `a`      | Spatial | Temporal | No Locality       |
+| `b`      | Spatial | Temporal | No Locality       |
+| `w`      | Spatial | Temporal | No Locality       |
+| `x`      | Spatial | Temporal | No Locality       |
 
 ---
 
