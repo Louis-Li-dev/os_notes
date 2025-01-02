@@ -1,0 +1,2 @@
+一個系統需要滿足的 a set of properties 來保證 processes make progress
+

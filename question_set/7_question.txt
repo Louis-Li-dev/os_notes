@@ -1,0 +1,1 @@
+Memory Barrier 的缺點

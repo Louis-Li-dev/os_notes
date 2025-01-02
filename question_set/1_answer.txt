@@ -1,0 +1,2 @@
+n processes 爭奪使用 shared data
+每個 process 有使用 shared data 的 code segment

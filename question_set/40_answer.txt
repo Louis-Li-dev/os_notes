@@ -1,0 +1,1 @@
+working set model 計算在 delta 時間內具備的 page 個數，若遠小於總共 frames 的數量就增加 multiprogramming degree，否則 thrashing

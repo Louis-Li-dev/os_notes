@@ -1,0 +1,4 @@
+
+因為 OS 確保 signal() 跟 wait() 是 Atomic 的
+沒有兩個 processes 可以同時執行 signal() 跟 wait() 
+在同個 semaphore 上

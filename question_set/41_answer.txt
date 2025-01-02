@@ -1,0 +1,3 @@
+1. 用來逼近 working set model
+2. 其利用 interval timer 跟 reference bit 去計算在特定時間內哪些 page 被存取
+但 delta 太小很難包括整個 locality; 太多會給太大空間給 locality

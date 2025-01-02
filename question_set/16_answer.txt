@@ -1,0 +1,4 @@
+
+indefinite waiting
+deadlock
+priority inversion

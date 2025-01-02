@@ -1,0 +1,1 @@
+因為 semaphore 是共享變數，在 uniprocessor 上跟 multicore system 上分別要做甚麼操作

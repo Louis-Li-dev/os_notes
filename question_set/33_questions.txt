@@ -1,0 +1,1 @@
+為甚麼要使用 virtual memory

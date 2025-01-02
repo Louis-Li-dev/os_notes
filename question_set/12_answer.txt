@@ -1,0 +1,2 @@
+uniprocessor: disable Interrupts
+multicore: test_and_set() and compare_and_swap()

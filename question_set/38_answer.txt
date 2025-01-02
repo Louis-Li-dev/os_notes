@@ -1,0 +1,1 @@
+當我記憶體空間上升提供更多 frames 時，我 page faults 不減反增

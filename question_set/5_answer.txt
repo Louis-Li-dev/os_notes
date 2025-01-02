@@ -1,0 +1,4 @@
+1. without preemption
+2. only avaiable to the kernel
+他是 priviledge instruction，應用程式不能用
+3. 不夠 MP 使用，只有關掉一個 core 的 interrupt 不夠

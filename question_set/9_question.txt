@@ -1,0 +1,1 @@
+hardware solution lock 可能不符合 bounded waiting 的定義

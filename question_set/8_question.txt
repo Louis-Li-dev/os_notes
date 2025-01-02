@@ -1,0 +1,2 @@
+為甚麼 while(lock != 0); lock = 1;中
+lock = 1 不能自己做

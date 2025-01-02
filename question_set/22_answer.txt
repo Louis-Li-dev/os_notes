@@ -1,0 +1,5 @@
+把 Deadlock 跟 Cycle 的關係連結
+(a) Deadlock -> Cycle
+(b) Cycle -> Maybe Deadlock
+(c) No cycle -> No Deadlock
+(d) No deadlock -> Maybe deadlock

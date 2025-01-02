@@ -1,0 +1,4 @@
+1. TLB 為 translation look-aside buffers，用來 cache page table entry，為超高速硬體來找到 page 對應的 frames
+2. 使用 TLB 會有 TLB hit, miss 的情況 miss 就需要去 page table 找
+3. wired-down TLB entries 為從來不會被 TLB 剔除的 entries，通常 OS 常用指令是 wired-down
+4. flush TLB context switch 要 flush

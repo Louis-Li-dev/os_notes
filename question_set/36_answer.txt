@@ -1,0 +1,2 @@
+Demand paging 的前提就是不要太多 page faults
+因 locality of reference，程式執行基本上不會產生太多 page faults 使得 demand paging 效能不差

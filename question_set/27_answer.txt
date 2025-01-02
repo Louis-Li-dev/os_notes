@@ -1,0 +1,1 @@
+internal fragmentation 為當使用 non-contiguous memory allocation 時候我分配的 blocks 大於實際 process 要求的空間

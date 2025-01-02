@@ -1,0 +1,11 @@
+
+加入 waiting[] (init to false)
+waiting[i] = true;
+while(waiting[i] && test_and_set(&lock));
+waiting[i] = false;
+
+j = (i + 1) % n;
+while((j != i) && waiting[j] == false)
+    j = (j + 1) % n;
+if(j == i) lock = false;
+else waiting[j] = false;

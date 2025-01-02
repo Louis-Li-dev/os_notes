@@ -1,0 +1,3 @@
+1. 每個 process 都有自己的 page table 來記錄第幾個 page 對應到哪個 frames
+2. hardware 引入兩個 registers (1) PTBR(page table based dregister) (2) PTLR(page-table length register)
+並且他們在 context switch 會 save restore

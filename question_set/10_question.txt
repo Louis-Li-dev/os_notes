@@ -1,0 +1,1 @@
+系統如果要支援 Atomic Varaibles 需要什麼

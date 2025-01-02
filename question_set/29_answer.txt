@@ -1,0 +1,2 @@
+OS 產生
+MMU 使用 Page Table 做 address translation

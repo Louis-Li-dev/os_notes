@@ -1,0 +1,1 @@
+為什麼 semaphores 只能透過 signal 跟 wait 來存取

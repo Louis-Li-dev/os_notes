@@ -1,0 +1,20 @@
+x.wait(){
+    x_count++;
+    // 讓別人進來
+    if (next_count > 0)
+        signal(next);
+    else
+        // 讓外面的進來
+        signal(mutex);
+    wait(x_sem);
+    x_count--;
+}
+x.signal(){
+    if (x_count > 0){
+        next_count++;
+        signal(x_sem);
+        wait(next); 
+        // signal and wait
+        next_count--;
+    }
+}

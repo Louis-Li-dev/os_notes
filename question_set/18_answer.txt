@@ -1,0 +1,6 @@
+1. 低 overhead，使用簡單 (integers) 變數的時候
+2. MP (multiprocessors) 如果 CS 很短那就用
+3. 比 binary semaphores 更少 overhead
+4. 很多 resources 的話使用 counting semaphore
+5. Read-write locks: 比 mutex lock 好，當需要高度平行度時候
+6. Monitor and condition variables: overhead 最高，不適合 highly contended 的狀況

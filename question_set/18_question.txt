@@ -1,0 +1,5 @@
+1. 什麼時候使用 atomic Variables
+2. 什麼時候使用 spinlock
+3. 什麼時候使用 counting semaphores
+4. 為什麼 read-write locks 比 mutex 還好
+5. monitor and condition有什麼缺點

@@ -1,0 +1,3 @@
+1. stack algorithm 並非單一 page replacement algorithm 是一個 category &
+假設 physical memory 有 n frames，當記憶體擴充變成 n + 1 之後， 原來的 n frames 仍保留在裡面
+2. Optimal 跟 LRU(least recently used) 都是 stack algorithm

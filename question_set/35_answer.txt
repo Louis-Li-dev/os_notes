@@ -1,0 +1,1 @@
+swapper 搬動整個 process，pager 有需要的時候搬動 page

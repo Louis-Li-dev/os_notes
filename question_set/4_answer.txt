@@ -1,0 +1,5 @@
+1. 容易出錯
+2. 當今電腦不見得會 work 因為有 reorder operations的狀況
+來對調 turn 跟 flag
+3. two-process Solution
+4. busy waiting: 花費太多 processor 的時間

@@ -1,0 +1,1 @@
+Thread 要使用 Resource 的步驟有哪些

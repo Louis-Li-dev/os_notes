@@ -1,0 +1,2 @@
+External Fragmentation 會讓 1/3 memory 無法使用
+舉出解決方案並且描述

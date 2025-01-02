@@ -1,0 +1,4 @@
+因為會拆成
+mov eax, 1
+mov lock, eax
+eax 導致 race condition

@@ -1,0 +1,6 @@
+wait(mutex)
+    // body of F;
+if (next_count > 0)
+    signal(next);
+else
+    signal(mutex);

@@ -1,0 +1,1 @@
+paging 將 virtual/logical memory 切成 page 並且轉換成 physical memory 來實現 non-contiguous memory allocation

@@ -1,0 +1,7 @@
+1. Method 1 
+Deadlock prevention
+Deadlock avoidance
+2. Method 2
+Deadlock detection and recovery
+3. Method 3
+Ignore

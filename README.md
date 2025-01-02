@@ -33,3 +33,8 @@ This repository contains my notes and summaries from **Operating System** lectur
      
 
 
+## Run the QA System
+
+```bash
+   python qa_system_entry.py
+```

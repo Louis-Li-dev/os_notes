@@ -1,0 +1,2 @@
+1. Compaction: 往上搬動來整理記憶體
+2. Non-contiguous Memory Allocation: 將記憶體切成 frames 並用 paging 來分配給 process

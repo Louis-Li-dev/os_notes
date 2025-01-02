@@ -1,0 +1,1 @@
+當 process 花太多時間在 paging 甚至多於執行時

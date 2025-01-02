@@ -1,0 +1,1 @@
+race condition，因為我會發生對方還沒 ready 就讓給我，我就算讓給他了 while 迴圈還是會因對方還沒 ready 而忽視導致 race condition

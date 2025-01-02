@@ -1,0 +1,3 @@
+1. 強迫 code 按照順序
+fence 之前跟之後的順序會維持
+2. Disable ordering
