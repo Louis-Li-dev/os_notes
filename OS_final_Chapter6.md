@@ -544,10 +544,20 @@ initialized to false
 
 <mark style='background-color: red; color:white; padding:4px; border-radius: 5px'><strong>1. 難道 binary semaphore 跟 mutex 不會有 bounded waiting 的問題嗎?</strong></mark>
 
+<mark style='background-color: orange; color:white; padding:4px; border-radius: 5px'><strong><i>A:</i> 會</strong></mark>
+
 <mark style='background-color: red; color:white; padding:4px; border-radius: 5px'><strong>
 2. 透過 semaphore 實現 monitor 這邊有所謂的 next semaphore，因為之前講到的 semaphore 具備他的一條 waiting queue，是否應該也有一個 waiting queue</strong></mark>
+
+<mark style='background-color: orange; color:white; padding:4px; border-radius: 5px'><strong><i>A:</i> 是，每個 semaphore 都有一個 waiting queue</strong></mark>
+
 
 <mark style='background-color: red; color:white; padding:4px; border-radius: 5px'><strong>
 3. OS 會維護 Page Table，修改 dirty bits, 跟 valid-invalid bits 是 MMU 還是 OS</strong></mark>
 
+<mark style='background-color: orange; color:white; padding:4px; border-radius: 5px'><strong><i>A:</i> valid-invalid bits 都是 OS 改的，因為發現 invalid 時候 page fault 丟 trap 跳進 OS， page out 改 invalid page int 改 valid</strong></mark>
+
+<mark style='background-color: orange; color:white; padding:4px; border-radius: 5px'><strong><i>A:</i> dirty bits 跟 reference bits set 都是 MMU 因為比較快，但 reset 是 OS，因為 reference bits 利用演算法 reset, dirty bits page out 也是 OS</strong></mark>
+
 ---
+

@@ -327,11 +327,11 @@
     \text{a cache} = 2 \text{ slab} = 24\text{ KB}\newline
     \text{PCB}  = 2 \text{ KB}\newline
     \text{a cache can stores 12 PCB}$
-### 優點
-- No fragmentation
-- Fast memory request satisfation 
-    - object已經事先 create
-    - 用完就弄成 free 但還在 cache 裡面
+- 優點
+    - No fragmentation
+    - Fast memory request satisfation 
+        - object已經事先 create
+        - 用完就弄成 free 但還在 cache 裡面
 
 ## Other Considerations
 ### Pre-paging
