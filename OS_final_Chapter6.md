@@ -360,7 +360,7 @@ initialized to false
 
 
   $$
-  egin{aligned}
+  \begin{aligned}
   &\mathrm{\,Let\,} \, P_1 \mathrm{\,addresses\,} S_1 \\ 
   &\mathrm{and\,} P_2 \mathrm{\,addresses\,} S_2 \\
   &\mathrm{synch}: 0 \\
@@ -546,5 +546,8 @@ initialized to false
 
 <mark style='background-color: red; color:white; padding:4px; border-radius: 5px'><strong>
 2. 透過 semaphore 實現 monitor 這邊有所謂的 next semaphore，因為之前講到的 semaphore 具備他的一條 waiting queue，是否應該也有一個 waiting queue</strong></mark>
+
+<mark style='background-color: red; color:white; padding:4px; border-radius: 5px'><strong>
+3. OS 會維護 Page Table，修改 dirty bits, 跟 valid-invalid bits 是 MMU 還是 OS</strong></mark>
 
 ---

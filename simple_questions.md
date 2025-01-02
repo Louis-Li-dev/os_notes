@@ -130,7 +130,10 @@ Explain the property or definition of the **stack algorithm** in page replacemen
 ## **11. One-Level Page Table (10 pts)**
 
 **Scenario:**  
-Details of process Pa, Pb, and physical memory are provided along with a reference string. Answer the following:  
+Assume one-level page table, following figure shows the logical memory of process $P_a$, logical memory of process $P_b$, the content of physical memory (initialially empty), and the reference strings of processes $P_a$ and $P_b$. Ignore the memory space used by the page table. Assume that, initially, the free frame list is: 0, 1, 2, 3, 4, 5, 6, and 7. After completing the execution of the reference string.
+
+<center><img src="additional_images/image-2.png"/> </center>
+Answer the following:  
 
 | Part | Description | Points |
 |------|-------------|--------|

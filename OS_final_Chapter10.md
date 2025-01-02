@@ -380,3 +380,7 @@
         - 缺點: 多一次記憶體 copy (目前還都這麼做)
     - Sol-2
         - Page 設定 lock bit 讓他不會踢出去
+
+## 補充
+### Reference String
+<img src="images-2/image-6.png">
