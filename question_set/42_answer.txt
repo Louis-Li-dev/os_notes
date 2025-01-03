@@ -1,0 +1,3 @@
+因為 thrashing 有很高的 page fault rate，
+當 page fault rate 在 upper bound 的時候我 increase the number of frames
+如果在 lower bound 就 decrease number of frames

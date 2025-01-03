@@ -1,0 +1,4 @@
+kernel 需要動態產生 data structure，這些資料因為常常被使用不能 page out 且 internal fragmentation 浪費記憶體
+有些硬體也需要 physically contiguous 的記憶體來跟 OS 互動，描述以下演算法來解決問題
+1. slab allocation
+2. buddy system

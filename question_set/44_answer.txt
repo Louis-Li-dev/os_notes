@@ -1,0 +1,10 @@
+1. buddy system: 
+- 分配用 2^n 
+- 如果需要小的記憶體空間我可以將大個 chunk 切成兩個 next-lower power of 2
+- coalescing 空白 (merge)
+2. slab allocation
+- 一個或更多 contiguous 的 frames 組成 slabs
+- 一個 cache 由多個 slabs 組成並且一個 cache 支援一個 kernel data structure
+- 優點
+    - no fragmentation
+    - fast memory request satisfaction 因為 object 事先建立好，用完 free 但 cache 還在裡面

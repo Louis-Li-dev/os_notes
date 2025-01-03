@@ -1,0 +1,3 @@
+1. increase page size
+2. increase TLB entries
+3. 提供不同 page sizes

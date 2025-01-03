@@ -1,0 +1,2 @@
+1. 規定 I/O 資料由 OS 代收
+2. lock bit 來讓他不會被 page out

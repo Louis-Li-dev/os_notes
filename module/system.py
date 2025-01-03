@@ -6,7 +6,7 @@ class QASystem:
     def __init__(self, root, directory="question_set"):
         self.root = root
         self.root.title("Q&A System")
-        self.root.geometry("900x700")
+        self.root.geometry("1200x700")
         self.root.resizable(False, False)
         self.root.configure(bg="#121212")
 
@@ -17,6 +17,23 @@ class QASystem:
 
         self.create_widgets()
 
+        self.user_answer_entry.bind("<Control-BackSpace>", self.delete_last_word)
+    def delete_last_word(self, event):
+        """Delete the last word before the cursor position."""
+        current_text = self.user_answer_entry.get()
+        cursor_position = self.user_answer_entry.index(tk.INSERT)
+
+        # Find the position of the last space before the cursor
+        last_space_pos = current_text.rfind(" ", 0, cursor_position)
+
+        if last_space_pos != -1:
+            # Delete the word before the last space
+            self.user_answer_entry.delete(last_space_pos + 1, cursor_position)
+        else:
+            # If no space found, delete from the start to the cursor
+            self.user_answer_entry.delete(0, cursor_position)
+
+        return 'break'  # Prevent the default behavior of the keybinding
     def load_questions_and_answers(self, directory):
         """Load questions and answers from files in the specified directory."""
         qa_pairs = {}
@@ -63,18 +80,28 @@ class QASystem:
         answer_scroll.pack(side=tk.RIGHT, fill=tk.Y)
         self.answer_text.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
+
     def create_controls(self, frame):
+        # Entry for user answers
         self.user_answer_entry = tk.Entry(frame, width=50, font=("Verdana", 14), bg="#1e1e1e", fg="#ffffff", insertbackground="#ffffff")
         self.user_answer_entry.grid(row=1, column=0, columnspan=2, pady=10)
 
-        check_answer_button = tk.Button(frame, text="Submit Answer", command=self.check_answer, font=("Verdana", 14), bg="#4caf50", fg="white", width=15)
-        check_answer_button.grid(row=2, column=0, pady=10, padx=5)
+        # Buttons for controls
+        self.check_answer_button = tk.Button(frame, text="Submit Answer", command=self.check_answer, font=("Verdana", 14), bg="#4caf50", fg="white", width=15)
+        self.check_answer_button.grid(row=2, column=0, pady=10, padx=5)
 
-        next_question_button = tk.Button(frame, text="Next Question", command=self.show_next_question, font=("Verdana", 14), bg="#2196f3", fg="white", width=15)
-        next_question_button.grid(row=2, column=1, pady=10, padx=5)
+        self.next_question_button = tk.Button(frame, text="Next Question", command=self.show_next_question, font=("Verdana", 14), bg="#2196f3", fg="white", width=15)
+        self.next_question_button.grid(row=2, column=1, pady=10, padx=5)
 
+        self.restart_button = tk.Button(frame, text="Restart", command=self.restart_quiz, font=("Verdana", 14), bg="#ff9800", fg="white", width=32)
+        self.restart_button.grid(row=2, column=0, columnspan=2, pady=10)
+        self.restart_button.grid_remove()  # Initially hidden
+
+        # Exit button remains at the bottom
         exit_button = tk.Button(self.root, text="Exit", command=self.root.destroy, font=("Verdana", 14), bg="#f44336", fg="white", width=20)
         exit_button.pack(pady=10)
+
+
 
     def show_next_question(self):
         """Display the next question."""
@@ -86,6 +113,9 @@ class QASystem:
         if self.current_question_index >= len(self.question_order):
             self.display_message(self.question_text, "No more questions.")
             self.display_message(self.answer_text, "")
+            self.check_answer_button.grid_remove()  # Hide Submit Answer
+            self.next_question_button.grid_remove()  # Hide Next Question
+            self.restart_button.grid()  # Show Restart
             return
 
         question_id = self.question_order[self.current_question_index]
@@ -94,6 +124,16 @@ class QASystem:
         self.display_message(self.question_text, self.qa_pairs[question_id][0])
         self.user_answer_entry.delete(0, tk.END)
         self.display_message(self.answer_text, "")
+
+    def restart_quiz(self):
+        """Restart the quiz."""
+        random.shuffle(self.question_order)
+        self.current_question_index = 0
+        self.show_next_question()
+        self.restart_button.grid_remove()  # Hide Restart
+        self.check_answer_button.grid()  # Show Submit Answer
+        self.next_question_button.grid()  # Show Next Question
+
 
     def check_answer(self):
         """Check the user's answer and display the correct answer."""

@@ -1,0 +1,2 @@
+原本的狀態是我有 free frame list modified frame list，假設太少 free frame 我們就把 modified list 寫回記憶體 page out
+memory compression 將 modified list 直接壓縮存放成更少的 page 以此釋放更多空間給 free frame list
